@@ -22,14 +22,14 @@ with open("./median.txt", "r") as infile:
     heapq.heappush(minHeap, v2)
     for line in infile:
         v = int(line)
-        maxTop = -heapq.nsmallest(1, maxHeap)[0]
+        maxTop = -maxHeap[0]
         if (v > maxTop): heapq.heappush(minHeap, v)
         else: heapq.heappush(maxHeap, -v)
         if (len(maxHeap) > len(minHeap) + 1): heapq.heappush(minHeap, -heapq.heappop(maxHeap))
         elif (len(minHeap) > len(maxHeap) + 1): heapq.heappush(maxHeap, -heapq.heappop(minHeap))
         
-        maxTop = -heapq.nsmallest(1, maxHeap)[0]
-        minTop = heapq.nsmallest(1, minHeap)[0] 
+        maxTop = -maxHeap[0]
+        minTop = minHeap[0]
         median = maxTop
         if (len(minHeap) > len(maxHeap)): median = minTop
         medianz.append(median)
